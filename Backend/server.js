@@ -27,7 +27,7 @@ app.use('/api/auth',authRoutes);
 
 //Sample Route
 app.get('/', (req,res)=>{
-    res.send('EmoFH Backend is Live');
+    res.send('E-Hospital Backend is Live');
 });
 
 //Downloads Routes
@@ -35,17 +35,17 @@ app.get('/', (req,res)=>{
 //For Windows Downloads
 app.get('/download/windows',(req,res) => {
     const filePath = path.join(__dirname,'downloads','EmoFH-Setup-Windows.exe');
-    res.download(filePath,"EmoFH-Windows.exe");
+    res.download(filePath,"E-Hospital-Windows.exe");
 });
 
 //For Mac
 app.get('/downloads/mac',(req,res) => {
     const filePath = path.join(__dirname, 'downloads',"EmoFH-Setup-Mac.dmg");
-    res.download(filePath, 'EmoFH-Mac-dmg');
+    res.download(filePath, 'E-HospitalMac-dmg');
 })
 
 //Start Server
 const PORT = process.env.PORT || 5040;
 app.listen(PORT, () => {
-    console.log(`Server is RUnning for EmoFH on http://localhost:${PORT}`);
+    console.log(`Server is Running for E-Hospital on http://localhost:${PORT}`);
 })
