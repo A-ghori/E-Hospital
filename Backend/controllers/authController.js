@@ -45,18 +45,18 @@ exports.registerUser = async (req, res) => {
 
     // Email sending code here
     try {
-      const subject = 'Welcome to EmoFH-AI!';
+      const subject = 'Welcome to E-Hospital Service!';
       const htmlContent = `
         <div style="font-family: Arial, sans-serif; color: #4B0082; padding: 20px;">
           <h1 style="color: #FF6F61;">Hello ${newUser.name},</h1>
           <p style="font-size: 16px;">
-            Thank you for registering at <strong>EmoFH-AI</strong>!
+            Thank you for registering at <strong>E-Hospital Service</strong>!
           </p>
           <hr style="border: none; height: 2px; background: linear-gradient(90deg, #4B0082, #FF6F61);" />
           <p style="font-size: 14px; color: #555;">
             We're excited to have you on board. If you have any questions, feel free to reply to this email.
           </p>
-          <p style="font-size: 14px; color: #555;">Cheers,<br />The <strong>EmoFH-AI</strong> Team 💜</p>
+          <p style="font-size: 14px; color: #555;">Cheers,<br />The <strong>E-Hospital Service</strong> Team 🤍 Hopefully You and Your Family are Doing Well!</p>
         </div>
       `;
       await sendEmail(newUser.email, subject, htmlContent);

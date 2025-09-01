@@ -22,7 +22,7 @@ const handleRegister = async (e) => {
         if(res.data.message === "User registered successfully"){
           // 2 second baad home page pe redirect
           setTimeout(() => {
-            navigate("/home");
+            navigate("/");
           }, 2000);
         }
 

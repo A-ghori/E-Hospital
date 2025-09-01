@@ -22,8 +22,14 @@ app.use(express.json());
 
 
 //Routes
+
+// Existing User Routes
 const authRoutes = require('./routes/auth');
 app.use('/api/auth',authRoutes);
+
+//Existing Admin Routes
+const adminRoutes = require('./routes/admin');
+app.use('/api/admin', adminRoutes);
 
 //Sample Route
 app.get('/', (req,res)=>{
