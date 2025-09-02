@@ -37,7 +37,7 @@ exports.registerAdmin = async (req,res) => {
             },  
         });
     } catch (error) {
-        console.error('Error registering admin:', error);
+        console.error('Error registering admin:', error.message);
         return res.status(500).json({ message: 'Internal server error' });
     }
 }
@@ -93,24 +93,6 @@ try {
     });
 }
 
-const token = jwt.sign({
-    id: admin._id,
-    email: admin.email,
-    role: admin.role
-}, 
-process.env.JWT_SECRET , 
-{ expiresIn: '1h' }
-);
-res.status(200).json({
-    message: "Login successful",
-    token,
-    admin: {
-        id: admin._id,
-        username: admin.username,
-        email: admin.email,
-        role: admin.role,
-    },
-});
     } catch (error){
         console.log("Error logging in admin:", error);
         res.status(500).json({
@@ -176,4 +158,3 @@ exports.verifyOtp = async (req,res) => {
         });
     }
 }
-

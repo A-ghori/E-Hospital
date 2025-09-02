@@ -31,6 +31,9 @@ app.use('/api/auth',authRoutes);
 const adminRoutes = require('./routes/admin');
 app.use('/api/admin', adminRoutes);
 
+//Existing Admin Routes
+const facultyRoutes = require('./routes/FacultyRoutes');
+app.use('/api/faculty', facultyRoutes)
 //Sample Route
 app.get('/', (req,res)=>{
     res.send('E-Hospital Backend is Live');

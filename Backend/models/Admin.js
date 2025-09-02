@@ -38,7 +38,12 @@ const adminSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
         expires: '5m'
+    },
+    avtar: {
+        type: String,
+        required: true,
+        default:"https://via.placeholder.com/150"
     }
-});
+}, {timestamps: true} );
 
 module.exports = mongoose.model('Admin', adminSchema);
