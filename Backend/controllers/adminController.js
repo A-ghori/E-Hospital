@@ -2,6 +2,7 @@ const Admin = require('../models/Admin');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { sendOtpSms } = require ('../utils/sms');
+const { cloudinary_js_config } = require('../utils/cloudinary');
 
 
 //Register Admin
@@ -156,5 +157,35 @@ exports.verifyOtp = async (req,res) => {
         return res.status(500).json({
             message: "Internal Server Error"
         });
+    }
+}
+
+
+exports.updateAdminProfile = async (req, res) => {
+    try{
+        const adminId = req.admin.id //From JWT middleware
+        const { username, photo } = req.body;
+
+        //If the file sent to cloudinary 
+        let avatarUrl;
+        if(req.file) {
+            const result = await cloudinary.uploader.upload(req.file.path);
+            avatarUrl = result.secure_url;
+        }
+        const updated = await Admin.findByIdAndUpdate(
+            adminId,
+            {username, phone, ...Admin(avatarUrl && { avatar: avatarUrl })},
+            {new: true }
+        );
+        res.status(200).json({
+            message: 'Profile upload Successfully',
+            admin: updated,
+        });
+
+    }catch(err){
+        console.log("Error updating Admin profile", err);
+        res.status(500).json({
+            message: "Internal Server error"
+        })
     }
 }

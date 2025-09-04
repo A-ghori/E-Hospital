@@ -1,0 +1,25 @@
+.prescription-container {
+  width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #000;
+  font-family: "Arial", sans-serif;
+  background: #fff;
+}
+
+.prescription-header {
+  text-align: center;
+}
+
+.patient-details, .symptoms, .prescription {
+  margin: 20px 0;
+}
+
+.prescription ol {
+  margin-left: 20px;
+}
+
+.doctor-sign {
+  margin-top: 40px;
+  text-align: right;
+}

@@ -19,6 +19,10 @@ function isValidName(name) {
   const nameRegex = /^[a-zA-Z\s]{2,50}$/; // Letters and spaces, length 2-50
   return name && nameRegex.test(name);
 }
+function isValidPhone(phone){
+    const phoneRegex = /^(\+91)?[6-9]\d{9}$/;
+    return phoneRegex.test(phone)
+}
 
 async function isPasswordPwned(password) {
   const count = await hibp.pwnedPassword(password);
@@ -29,5 +33,6 @@ module.exports = {
   isValidEmail,
   isValidPassword,
   isValidName,
-  isPasswordPwned
+  isPasswordPwned,
+  isValidPhone
 };

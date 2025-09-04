@@ -2,6 +2,7 @@ const Faculty = require ('../models/faculty');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { sendOtpSms} = require ('../utils/sms');
+const cloudinary = require('../utils/cloudinary');
 
 
 
@@ -189,6 +190,34 @@ exports.verifyFacultyOtp = async (req, res) => {
     } catch (error) {
         console.error("Error in verifyFacultyOtp:", error);
         return res.status(500).json({
+            message: "Internal server error"
+        });
+    }
+}
+
+exports.updateFacultyProfile = async (req,res) => {
+    try{
+        const facultyId = req.faculty.id //From Jwt middleware
+        const { username, phone } = req.body;
+
+        // If file upload sent to cloudinary
+        let avatarUrl;
+        if(req.file) {
+            const result = await cloudinary.uploader.upload(req.file.path);
+            avatarUrl = result.secure_url;
+        }
+        const updated = await Faculty.findByIdAndUpdate(
+            facultyId,
+            {username, phone, ...(avatarUrl && { avatar:avatarUrl })},
+            { new: true }
+        );
+        res.status(200).json({
+            message: "Profile uodated successfully",
+            faculty: updated,
+        });
+    } catch (err) {
+        console.error("Error updating faculty profile:", err);
+        res.status(500).json({
             message: "Internal server error"
         });
     }
