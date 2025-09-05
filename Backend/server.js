@@ -33,7 +33,11 @@ app.use('/api/admin', adminRoutes);
 
 //Existing Faculty Routes
 const facultyRoutes = require('./routes/FacultyRoutes');
-app.use('/api/faculty', facultyRoutes)
+app.use('/api/faculty', facultyRoutes);
+
+//Patient Merging with User Login Routes
+const prescriptionRoutes = require("./routes/PrescriptionRoutes");
+app.use('/api/prescriptions',prescriptionRoutes)
 
 //Sample Route
 app.get('/', (req,res)=>{
